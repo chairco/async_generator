@@ -31,7 +31,7 @@ This library gives you all that back to Python 3.5.
 
 For example, this code only works in Python 3.6+:
 
-.. code-block:: python3
+.. code-block:: python
 
    async def load_json_lines(stream_reader):
        async for line in stream_reader:
@@ -39,7 +39,7 @@ For example, this code only works in Python 3.6+:
 
 But this code does the same thing, and works on Python 3.5+:
 
-.. code-block:: python3
+.. code-block:: python
 
    from async_generator import async_generator, yield_
 
@@ -50,7 +50,7 @@ But this code does the same thing, and works on Python 3.5+:
 
 Or in Python 3.7, you can write:
 
-.. code-block:: python3
+.. code-block:: python
 
    from contextlib import asynccontextmanager
 
@@ -66,7 +66,7 @@ Or in Python 3.7, you can write:
 
 This is the same, but back to 3.5:
 
-.. code-block:: python3
+.. code-block:: python
 
    from async_generator import async_generator, yield_, asynccontextmanager
 
