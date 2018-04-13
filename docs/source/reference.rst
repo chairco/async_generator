@@ -4,13 +4,17 @@ API documentation
 Async generators
 ----------------
 
-In Python 3.6+, you can write a native async generator like this::
+In Python 3.6+, you can write a native async generator like this:
+
+.. code-block:: python
 
     async def load_json_lines(stream_reader):
         async for line in stream_reader:
             yield json.loads(line)
 
-Here's the same thing written with this library, which works on Python 3.5+::
+Here's the same thing written with this library, which works on Python 3.5+:
+
+.. code-block:: python
 
     from async_generator import async_generator, yield
 
@@ -31,14 +35,18 @@ That's it!
 Yield from
 ~~~~~~~~~~
 
-Native async generators don't support ``yield from``::
+Native async generators don't support ``yield from``:
+
+.. code-block:: python
 
     # Doesn't work!
     async def wrap_load_json_lines(stream_reader):
         # This is a SyntaxError
         yield from load_json_lines(stream_reader)
 
-But we do::
+But we do:
+
+.. code-block:: python
 
     from async_generator import async_generator, yield_from_
 
@@ -53,7 +61,9 @@ async iterator, including native async generators.
 
 Our ``yield_from_`` fully supports the classic ``yield from``
 semantics, including forwarding ``asend`` and ``athrow`` calls into
-the delegated async generator, and returning values::
+the delegated async generator, and returning values:
+
+.. code-block:: python
 
     from async_generator import async_generator, yield_, yield_from_
 
@@ -86,7 +96,9 @@ For introspection purposes, we also export the following functions:
    by this library, or a native Python 3.6+ async generator function.
    Analogous to :func:`inspect.isasyncgenfunction` in 3.6+.
 
-Example::
+Example:
+
+.. code-block:: python
 
    >>> isasyncgenfunction(load_json_lines)
    True
@@ -96,7 +108,9 @@ Example::
 
 In addition, this library's async generator objects are registered
 with the ``collections.abc.AsyncGenerator`` abstract base class (if
-available)::
+available):
+
+.. code-block:: python
 
    >>> isinstance(gen_object, collections.abc.AsyncGenerator)
    True
@@ -127,7 +141,9 @@ async generators. To make this more convenient, this library also
 includes an ``aclosing`` async context manager. It acts just like the
 ``closing`` context manager included in the stdlib ``contextlib``
 module, but does ``await obj.aclose()`` instead of
-``obj.close()``. Use it like this::
+``obj.close()``. Use it like this:
+
+.. code-block:: python
 
    from async_generator import aclosing
 
@@ -147,7 +163,9 @@ covered:
 You can use ``@asynccontextmanager`` with either native async
 generators, or the ones from this package. If you use it with the ones
 from this package, remember that ``@asynccontextmanager`` goes *on
-top* of ``@async_generator``::
+top* of ``@async_generator``:
+
+.. code-block:: python
 
    # Correct!
    @asynccontextmanager
